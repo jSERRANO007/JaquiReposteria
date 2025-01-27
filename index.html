@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jackie Repostería</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+        header {
+            background-color: #ffcccb;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        .content {
+            padding: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #ff6666;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #ff3333;
+        }
+        footer {
+            text-align: center;
+            padding: 10px;
+            background-color: #ffcccb;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Jaqui Repostería</h1>
+        <p>Contacto: Jacqueline Artavia - Teléfono: 7245-9199</p>
+    </header>
+    <div class="content">
+        <button id="createOrder">Crear Pedido</button>
+        <div id="orderForm" style="display: none;">
+            <div class="form-group">
+                <label for="name">Nombre y Apellido</label>
+                <input type="text" id="name" placeholder="Escriba su nombre y Apellido">
+            </div>
+            <div class="form-group">
+                <label for="phone">Teléfono</label>
+                <input type="text" id="phone" placeholder="Escriba su número de teléfono">
+            </div>
+            <div class="form-group">
+                <label for="product">Seleccione un producto</label>
+                <select id="product">
+                    <option value="Reposterias">Reposterías</option>
+                    <option value="Trenzas">Trenzas</option>
+                    <option value="Postres">Postres</option>
+                </select>
+            </div>
+            <div class="form-group" id="sizeGroup" style="display: none;">
+                <label for="size">Tamaño</label>
+                <select id="size">
+                    <option value="13000">₡13,000</option>
+                    <option value="15000">₡15,000</option>
+                    <option value="20000">₡20,000</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="quantity">Cantidad</label>
+                <input type="number" id="quantity" min="1" value="1">
+            </div>
+            <div class="form-group">
+                <label for="instructions">Instrucciones especiales</label>
+                <textarea id="instructions" placeholder="Detalles adicionales"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="date">Fecha requerida</label>
+                <input type="date" id="date">
+            </div>
+            <p><strong>Total: ₡<span id="total">0</span></strong></p>
+            <button id="cancelOrder">Cancelar</button>
+            <button id="sendOrder">Enviar</button>
+        </div>
+    </div>
+    <footer>
+        <p>© 2025 Jaqui Repostería</p>
+    </footer>
+    <script>
+        const createOrderButton = document.getElementById('createOrder');
+        const orderForm = document.getElementById('orderForm');
+        const cancelOrderButton = document.getElementById('cancelOrder');
+        const sendOrderButton = document.getElementById('sendOrder');
+        const productSelect = document.getElementById('product');
+        const sizeGroup = document.getElementById('sizeGroup');
+        const sizeSelect = document.getElementById('size');
+        const quantityInput = document.getElementById('quantity');
+        const totalDisplay = document.getElementById('total');
+
+        let currentTotal = 0;
+
+        createOrderButton.addEventListener('click', () => {
+            orderForm.style.display = 'block';
+            createOrderButton.style.display = 'none';
+        });
+
+        cancelOrderButton.addEventListener('click', () => {
+            orderForm.reset();
+            orderForm.style.display = 'none';
+            createOrderButton.style.display = 'block';
+        });
+
+        productSelect.addEventListener('change', () => {
+            if (productSelect.value === 'Postres') {
+                sizeGroup.style.display = 'block';
+            } else {
+                sizeGroup.style.display = 'none';
+            }
+            updateTotal();
+        });
+
+        quantityInput.addEventListener('input', updateTotal);
+        sizeSelect.addEventListener('change', updateTotal);
+
+        function updateTotal() {
+            const product = productSelect.value;
+            const quantity = parseInt(quantityInput.value) || 0;
+            let price = 0;
+
+            if (product === 'Reposterias') {
+                price = 1000;
+            } else if (product === 'Trenzas') {
+                price = 1000;
+            } else if (product === 'Postres') {
+                price = parseInt(sizeSelect.value);
+            }
+
+            currentTotal = price * quantity;
+            totalDisplay.textContent = currentTotal.toLocaleString();
+        }
+
+        sendOrderButton.addEventListener('click', () => {
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const product = productSelect.value;
+            const quantity = quantityInput.value;
+            const instructions = document.getElementById('instructions').value;
+            const date = document.getElementById('date').value;
+
+            const whatsappMessage = `Pedido de Jaqui Repostería:%0A%0A` +
+                                    `Solicitante: ${name}%0A` +
+                                    `Teléfono: ${phone}%0A` +
+                                    `Producto: ${product}%0A` +
+                                    `Cantidad: ${quantity}%0A` +
+                                    `Instrucciones: ${instructions}%0A` +
+                                    `Fecha requerida: ${date}%0A` +
+                                    `Total: ₡${currentTotal.toLocaleString()}`;
+
+            window.open(`https://wa.me/72459199?text=${whatsappMessage}`, '_blank');
+        });
+    </script>
+</body>
+</html>
