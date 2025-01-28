@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+       <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jackie Repostería</title>
+    <title>Jacqui Repostería</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,6 +34,9 @@
             padding: 10px;
             margin: 5px 0 10px;
         }
+        input:required, select:required, textarea:required {
+            border: 2px solid #ff6666;
+        }
         button {
             padding: 10px 20px;
             background-color: #ff6666;
@@ -50,59 +53,79 @@
             background-color: #ffcccb;
             margin-top: 20px;
         }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 300px;
+            background-color: #ffe5e5;
+            margin-bottom: 20px;
+        }
+        .image-container img {
+            max-width: 100%;
+            max-height: 100%;
+            border-radius: 10px;
+        }
     </style>
 </head>
 <body>
     <header>
-        <h1>Jaqui Repostería</h1>
-        <p>Contacto: Jacqueline Artavia - Teléfono: 7245-9199</p>
+        <h1>Jackie Repostería</h1>
+        <p>Contacto: Jacquelin Artavia - Teléfono: 7245-9199</p>
     </header>
+    <div class="image-container">
+        <img src="./imagen-proporcionada.jpg" alt="...">
+    </div>
     <div class="content">
         <button id="createOrder">Crear Pedido</button>
         <div id="orderForm" style="display: none;">
-            <div class="form-group">
-                <label for="name">Nombre y Apellido</label>
-                <input type="text" id="name" placeholder="Escriba su nombre y Apellido">
-            </div>
-            <div class="form-group">
-                <label for="phone">Teléfono</label>
-                <input type="text" id="phone" placeholder="Escriba su número de teléfono">
-            </div>
-            <div class="form-group">
-                <label for="product">Seleccione un producto</label>
-                <select id="product">
-                    <option value="Reposterias">Reposterías</option>
-                    <option value="Trenzas">Trenzas</option>
-                    <option value="Postres">Postres</option>
-                </select>
-            </div>
-            <div class="form-group" id="sizeGroup" style="display: none;">
-                <label for="size">Tamaño</label>
-                <select id="size">
-                    <option value="13000">₡13,000</option>
-                    <option value="15000">₡15,000</option>
-                    <option value="20000">₡20,000</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="quantity">Cantidad</label>
-                <input type="number" id="quantity" min="1" value="1">
-            </div>
-            <div class="form-group">
-                <label for="instructions">Instrucciones especiales</label>
-                <textarea id="instructions" placeholder="Detalles adicionales"></textarea>
-            </div>
-            <div class="form-group">
-                <label for="date">Fecha requerida</label>
-                <input type="date" id="date">
-            </div>
-            <p><strong>Total: ₡<span id="total">0</span></strong></p>
-            <button id="cancelOrder">Cancelar</button>
-            <button id="sendOrder">Enviar</button>
+            <form id="orderDetails">
+                <div class="form-group">
+                    <label for="name">Nombre y Apellido</label>
+                    <input type="text" id="name" placeholder="Escriba su nombre y apellido" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Teléfono</label>
+                    <input type="text" id="phone" placeholder="Escriba su número de teléfono" required>
+                </div>
+                <div class="form-group">
+                    <label for="product">Seleccione un producto</label>
+                    <select id="product" required>
+                        <option value="">Seleccione una opción</option>
+                        <option value="Reposterias">Reposterías</option>
+                        <option value="Trenzas">Trenzas</option>
+                        <option value="Postres">Postres</option>
+                    </select>
+                </div>
+                <div class="form-group" id="sizeGroup" style="display: none;">
+                    <label for="size">Tamaño</label>
+                    <select id="size">
+                        <option value="">Seleccione un tamaño</option>
+                        <option value="13000">₡13,000</option>
+                        <option value="15000">₡15,000</option>
+                        <option value="20000">₡20,000</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="quantity">Cantidad</label>
+                    <input type="number" id="quantity" min="1" value="1" required>
+                </div>
+                <div class="form-group">
+                    <label for="instructions">Instrucciones especiales</label>
+                    <textarea id="instructions" placeholder="Detalles adicionales" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="date">Fecha requerida</label>
+                    <input type="date" id="date" required>
+                </div>
+                <p><strong>Total: ₡<span id="total">0</span></strong></p>
+                <button type="button" id="cancelOrder">Cancelar</button>
+                <button type="submit" id="sendOrder">Enviar</button>
+            </form>
         </div>
     </div>
     <footer>
-        <p>© 2025 Jaqui Repostería</p>
+        <p>© 2025 Jackie Repostería</p>
     </footer>
     <script>
         const createOrderButton = document.getElementById('createOrder');
@@ -114,6 +137,7 @@
         const sizeSelect = document.getElementById('size');
         const quantityInput = document.getElementById('quantity');
         const totalDisplay = document.getElementById('total');
+        const orderDetailsForm = document.getElementById('orderDetails');
 
         let currentTotal = 0;
 
@@ -123,12 +147,16 @@
         });
 
         cancelOrderButton.addEventListener('click', () => {
-            orderForm.reset();
+            // Restablece el formulario completo
+            orderDetailsForm.reset();
             orderForm.style.display = 'none';
             createOrderButton.style.display = 'block';
+            totalDisplay.textContent = '0';
+            sizeGroup.style.display = 'none';
         });
 
         productSelect.addEventListener('change', () => {
+            // Mostrar el selector de tamaño solo si el producto es "Postres"
             if (productSelect.value === 'Postres') {
                 sizeGroup.style.display = 'block';
             } else {
@@ -145,19 +173,27 @@
             const quantity = parseInt(quantityInput.value) || 0;
             let price = 0;
 
+            // Determina el precio según el producto seleccionado
             if (product === 'Reposterias') {
                 price = 1000;
             } else if (product === 'Trenzas') {
                 price = 1000;
             } else if (product === 'Postres') {
-                price = parseInt(sizeSelect.value);
+                price = parseInt(sizeSelect.value) || 0;
             }
 
             currentTotal = price * quantity;
             totalDisplay.textContent = currentTotal.toLocaleString();
         }
 
-        sendOrderButton.addEventListener('click', () => {
+        sendOrderButton.addEventListener('click', (event) => {
+            // Evita el envío si hay campos vacíos
+            if (!orderDetailsForm.checkValidity()) {
+                event.preventDefault();
+                orderDetailsForm.reportValidity();
+                return;
+            }
+
             const name = document.getElementById('name').value;
             const phone = document.getElementById('phone').value;
             const product = productSelect.value;
@@ -165,7 +201,7 @@
             const instructions = document.getElementById('instructions').value;
             const date = document.getElementById('date').value;
 
-            const whatsappMessage = `Pedido de Jaqui Repostería:%0A%0A` +
+            const whatsappMessage = `Pedido de Jacqui Repostería:%0A%0A` +
                                     `Solicitante: ${name}%0A` +
                                     `Teléfono: ${phone}%0A` +
                                     `Producto: ${product}%0A` +
