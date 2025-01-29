@@ -176,16 +176,7 @@
             updateTotal();
         });
 
-           productSelect.addEventListener('change', () => {
-            // Mostrar el selector de Sabor solo si el producto es "Trenzas"
-            if (productSelect.value === 'Trenzas') {
-                sizeGroup.style.display = 'block';
-            } else {
-                sizeGroup.style.display = 'none';
-            }
-            updateTotal();
-        });
-
+           
         quantityInput.addEventListener('input', updateTotal);
         sizeSelect.addEventListener('change', updateTotal);
 
