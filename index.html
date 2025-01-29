@@ -99,7 +99,7 @@
                 <div class="form-group" id="sizeGroup" style="display: none;">
                     <label for="size">Sabor</label>
                     <select id="size">
-                        <option value="">Seleccione un tamaño</option>
+                        <option value="">Seleccione un sabor</option>
                         <option value="1">Carne</option>
                         <option value="2">Pizza</option>
                         <option value="3">Piña y Quesocrema</option>
@@ -169,6 +169,16 @@
         productSelect.addEventListener('change', () => {
             // Mostrar el selector de tamaño solo si el producto es "Postres"
             if (productSelect.value === 'Postres') {
+                sizeGroup.style.display = 'block';
+            } else {
+                sizeGroup.style.display = 'none';
+            }
+            updateTotal();
+        });
+
+           productSelect.addEventListener('change', () => {
+            // Mostrar el selector de Sabor solo si el producto es "Trenzas"
+            if (productSelect.value === 'Trenzas') {
                 sizeGroup.style.display = 'block';
             } else {
                 sizeGroup.style.display = 'none';
