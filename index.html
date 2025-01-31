@@ -68,6 +68,30 @@
         }
     </style>
 </head>
+       //  Nuevo CODE
+                   <script>
+document.getElementById("sendOrder").addEventListener("click", function() {
+    let nombre = document.getElementById("nombre").value;
+    let telefono = document.getElementById("telefono").value;
+    let producto = document.getElementById("producto").value;
+    let cantidad = document.getElementById("cantidad").value;
+    let instrucciones = document.getElementById("instrucciones").value;
+    let joinGroup = document.getElementById("joinGroup").checked;
+
+    let mensaje = `Nuevo Pedido:%0A- Nombre: ${nombre}%0A- Teléfono: ${telefono}%0A- Producto: ${producto}%0A- Cantidad: ${cantidad}%0A- Instrucciones: ${instrucciones}`;
+
+    if (joinGroup) {
+        mensaje += `%0A- Cliente desea ser añadido al grupo de WhatsApp`;
+    }
+
+    let numeroWhatsApp = "YOUR_PHONE_NUMBER"; // Reemplaza con tu número en formato internacional sin el "+"
+    let url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensaje}`;
+
+    window.open(url, "_blank");
+});
+</script>
+//   FIN codigo nuevo                
+       
 <body>
     <header>
         <h1>Jacqui Repostería</h1>
@@ -118,7 +142,13 @@
                     <label for="date">Fecha requerida</label>
                     <input type="date" id="date" required>
                 </div>
-                <p><strong>Total: ₡<span id="total">0</span></strong></p>
+// incluir Numero en Grupo Whatsapp                   
+<label>
+    <input type="checkbox" id="joinGroup"> Deseo ser añadido al grupo de WhatsApp
+</label>
+// Codigo de boton enviar Original                   
+//  <p><strong>Total: ₡<span id="total">0</span></strong></p>
+
                 <button type="button" id="cancelOrder">Cancelar</button>
                 <button type="submit" id="sendOrder">Enviar</button>
             </form>
