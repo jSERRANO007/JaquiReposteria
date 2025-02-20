@@ -251,7 +251,7 @@ document.getElementById("sendOrder").addEventListener("click", function() {
             numerosWhatsApp.forEach(numero => {
                 let url = `https://api.whatsapp.com/send?phone=${numero}&text=${whatsappMessage}`;
                 window.open(url, "_blank");
-           // });
+            });
         });
     </script>
 </body>
