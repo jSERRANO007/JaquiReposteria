@@ -84,7 +84,7 @@ document.getElementById("sendOrder").addEventListener("click", function() {
         mensaje += `%0A- Cliente desea ser añadido al grupo de WhatsApp`;
     }
 
-    let numeroWhatsApp = "YOUR_PHONE_NUMBER"; // Reemplaza con tu número en formato internacional sin el "+"
+    let numeroWhatsApp = "72459199"; // Reemplaza con tu número en formato internacional sin el "+"
     let url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensaje}`;
 
     window.open(url, "_blank");
