@@ -78,7 +78,7 @@ document.getElementById("sendOrder").addEventListener("click", function() {
     let instrucciones = document.getElementById("instrucciones").value;
     let joinGroup = document.getElementById("joinGroup").value;
 
-    let mensaje = `Nuevo Pedido:%0A- Nombre: ${nombre}%0A- Teléfono: ${telefono}%0A- Producto: ${producto}%0A- Cantidad: ${cantidad}%0A- Instrucciones: ${instrucciones}`;
+    let mensaje = `Nuevo Pedido:%0A- Nombre: ${nombre}%0A- Teléfono: ${telefono}%0A- Producto: ${producto}%0A- Cantidad: ${cantidad}%0A- Instrucciones: ${instrucciones} JoinGroup: ${mensaje}%0A- `;
 
     if (joinGroup) {
         mensaje += `%0A- Cliente desea ser añadido al grupo de WhatsApp`;
