@@ -242,8 +242,16 @@ document.getElementById("sendOrder").addEventListener("click", function() {
                                     `Cliente desea ser añadido al grupo de WhatsApp: ${mensaje}%0A` +
                                     `Total: ₡${currentTotal.toLocaleString()}`;
 
-            window.open(`https://wa.me/72459199?text=${whatsappMessage}`, '_blank');
-            window.open(`https://wa.me/88140898?text=${whatsappMessage}`, '_blank');
+           // window.open(`https://wa.me/72459199?text=${whatsappMessage}`, '_blank');
+         
+                 // Definir los dos números de WhatsApp a los que se enviará el mensaje
+            let numerosWhatsApp = ["72459199", "88140898"]; // Agregael segundo número
+
+            // Enviar el pedido a ambos números
+            numerosWhatsApp.forEach(numero => {
+                let url = `https://api.whatsapp.com/send?phone=${numero}&text=${whatsappMessage}`;
+                window.open(url, "_blank");
+           // });
         });
     </script>
 </body>
