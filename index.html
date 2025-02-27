@@ -244,7 +244,7 @@ document.getElementById("sendOrder").addEventListener("click", function() {
             const instructions = document.getElementById('instructions').value;
             const date = document.getElementById('date').value;
             const mensaje = document.getElementById('joinGroup').value;
-            const orderCode = document.getElementById('orderCode').value;   
+            
             const whatsappMessage = `Pedido para Jacqui Repostería:%0A%0A` +
                                     `Solicitante: ${name}%0A` +
                                     `Teléfono: ${phone}%0A` +
@@ -253,7 +253,7 @@ document.getElementById("sendOrder").addEventListener("click", function() {
                                     `Instrucciones: ${instructions}%0A` +
                                     `Fecha requerida: ${date}%0A` +
                                     `Cliente desea ser añadido al grupo de WhatsApp: ${mensaje}%0A` +
-                                    `orderCode: ${orderCode}` +
+                                
                                     `Total: ₡${currentTotal.toLocaleString()}`;
 
            // window.open(`https://wa.me/72459199?text=${whatsappMessage}`, '_blank');
