@@ -5,89 +5,149 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacqui Repostería</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
-        margin: 15px; /* Agregar margen alrededor de toda la página */
-        padding: 20px; /* Espacio adicional interior */
+    /* Configuración básica para hacer toda la página responsiva */
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
         background-color: #ffffff;
         max-width: 1200px; /* Ancho máximo de la página */
         margin: 0 auto; /* Centra el contenido horizontalmente */
-        }
-        header {
-            background-color: #ffffff;
-            padding: 20px;
-            text-align: center;
-        }
-        header h1 {
-            margin: 0;
-        }
-        .content {
-            padding: 20px;
-        }
-        .form-group {
-            margin-bottom: 15px;
-        }
-        label {
-            display: block;
-            margin-bottom: 5px;
-        }
-        input, select, textarea {
-            width: 100%;
-            padding: 10px;
-            margin: 5px 0 10px;
-        }
-        input:required, select:required, textarea:required {
-            border: 2px solid #ff6666;
-        }
-        button {
-            padding: 10px 20px;
-            background-color: #ff6666;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        button:hover {
-            background-color: #ff3333;
-        }
-        footer {
-            text-align: center;
-            padding: 10px;
-            background-color: #ffffff;
-            margin-top: 20px;
-        }
-        .image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 400px;
-            background-color: #ffffff;
-            margin-bottom: 20px;
-        }
-        .image-container img {
-            width: 100%; /* Asegura que abarque todo el ancho */
-    height: auto; /* Mantiene las proporciones de la imagen */
-    border-radius: 0; /* Elimina cualquier borde redondeado */
-        }
-           /* Estilo para los logos de redes sociales */
-        .social-buttons img {
-            width: 50px; /* Tamaño ajustado de los logos */
-            height: auto; /* Mantener proporciones */
-            margin: 10px; /* Espaciado entre íconos */
-            cursor: pointer; /* Cambia el cursor a mano */
+    }
+
+    img {
+        max-width: 100%; /* Asegura que las imágenes no excedan su contenedor */
+        height: auto; /* Mantiene las proporciones */
+    }
+
+    header {
+        text-align: center;
+        padding: 15px 10px;
+    }
+
+    header h1, header p {
+        margin: 5px;
+    }
+
+    .content {
+        padding: 20px;
+    }
+
+    .image-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: auto;
+        background-color: #ffffff;
+        margin-bottom: 20px;
+    }
+
+    .about-section {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #ffffff;
+    }
+
+    .about-section h2 {
+        font-size: 32px; /* Títulos adaptables */
+        text-align: left;
+    }
+
+    .about-section div {
+        display: flex;
+        flex-wrap: wrap; /* Se reorganiza en filas si el espacio no es suficiente */
+        gap: 20px;
+    }
+
+    .about-section div > div {
+        flex: 1 1 calc(50% - 20px); /* Ajusta la proporción del texto y las imágenes */
+        box-sizing: border-box;
+    }
+
+    .about-section img {
+        border-radius: 5px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Carrusel */
+    #product-carousel {
+        display: flex;
+        overflow: hidden; /* Oculta las imágenes fuera del carrusel */
+    }
+
+    #product-carousel img {
+        flex: 0 0 25%; /* Cada imagen ocupa el 25% del contenedor */
+        max-width: 300px;
+        height: auto;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        margin-right: 15px;
+    }
+
+    /* Mesas Dulces */
+    .mesas-dulces {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+    }
+
+    .mesas-dulces img {
+        flex: 1 1 calc(50% - 20px); /* Ocupan la mitad del ancho con espacio entre ellas */
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+        text-align: center;
+        padding: 10px 20px;
+        margin-top: 20px;
+    }
+
+    .social-buttons img {
+        width: 40px;
+        height: auto;
+        margin: 5px;
+    }
+
+    /* Responsividad con media queries */
+    @media (max-width: 768px) {
+        .about-section h2 {
+            font-size: 28px; /* Reduce el tamaño del título en pantallas medianas */
         }
 
-        .social-buttons img:hover {
-            opacity: 0.8; /* Efecto visual al pasar el cursor */
-            transform: scale(1.1); /* Agranda el botón ligeramente */
-            transition: all 0.3s ease; /* Suaviza la animación */
+        .about-section div > div {
+            flex: 1 1 100%; /* Elementos ocupan todo el ancho en pantallas pequeñas */
         }
-           .about-section {
-        margin-top: 30px; /* Espacio entre portada y "Sobre Nosotros" */
-        margin-bottom: 30px;
-        padding: 15px;
-        background-color: #ffffff; /* Fondo blanco, opcional */
+
+        #product-carousel img {
+            flex: 0 0 50%; /* Muestra 2 imágenes a la vez en pantallas pequeñas */
+        }
+
+        .mesas-dulces img {
+            flex: 1 1 100%; /* Cada imagen ocupa el ancho completo */
+        }
+
+        footer {
+            font-size: 14px;
+        }
     }
-    </style>
+
+    @media (max-width: 480px) {
+        header p {
+            font-size: 14px; /* Ajusta el texto de contacto */
+        }
+
+        .about-section h2 {
+            font-size: 24px;
+        }
+
+        footer {
+            font-size: 12px;
+        }
+    }
+</style>
+
 </head>
    
   <script>
