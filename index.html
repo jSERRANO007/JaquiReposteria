@@ -1,431 +1,563 @@
-       <!DOCTYPE html>
-<html lang="es">
-<head>
-    <style>
-        /* Configuración básica para hacer toda la página responsiva */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #ffffff;
-            max-width: 1200px; /* Ancho máximo de la página */
-            margin: 0 auto; /* Centra el contenido horizontalmente */
-        }
-        img {
-            max-width: 100%; /* Asegura que las imágenes no excedan su contenedor */
-            height: auto; /* Mantiene las proporciones */
-        }
-        header {
-            text-align: center;
-            padding: 15px 10px;
-        }
-        header h1, header p {
-            margin: 5px;
-        }
-        .content {
-            padding: 20px;
-        }
-        .image-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: auto;
-            background-color: #ffffff;
-            margin-bottom: 20px;
-        }
-        .about-section {
-            margin-top: 30px;
-            padding: 20px;
-            background-color: #ffffff;
-        }
-        .about-section h2 {
-            font-size: 32px; /* Títulos adaptables */
-            text-align: left;
-        }
-        .about-section div {
-            display: flex;
-            flex-wrap: wrap; /* Se reorganiza en filas si el espacio no es suficiente */
-            gap: 20px;
-        }
-        .about-section div > div {
-            flex: 1 1 calc(50% - 20px); /* Ajusta la proporción del texto y las imágenes */
-            box-sizing: border-box;
-        }
-        .about-section img {
-            border-radius: 5px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-    #product-carousel {
-        display: flex;
-        overflow: hidden; /* Oculta las imágenes fuera del carrusel */
-    }
-
-    #product-carousel img {
-        flex: 0 0 25%; /* Cada imagen ocupa el 25% en PC */
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-right: 15px;
-    }
-    @media (max-width: 768px) {
-        #product-carousel img {
-            flex: 0 0 50%; /* Cada imagen ocupa el 50% en móviles */
-        }
-        /* Mesas Dulces */
-        .mesas-dulces {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .mesas-dulces img {
-            flex: 1 1 calc(50% - 20px); /* Cada imagen ocupa el 50% del ancho en PC */
-            border-radius: 10px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
-        footer {
-            text-align: center;
-            padding: 10px 20px;
-            margin-top: 20px;
-        }
-        .social-buttons img {
-            width: 40px;
-            height: auto;
-            margin: 5px;
-        }
-        /* Responsividad con media queries */
-        @media (max-width: 768px) {
-            .about-section h2 {
-                font-size: 28px; /* Reduce el tamaño del título en pantallas medianas */
-            }
-            .about-section div > div {
-                flex: 1 1 100%; /* El texto ocupa todo el ancho en pantallas pequeñas */
-            }
-            .about-section img {
-                width: 100%; /* La imagen ocupa todo el ancho */
-            }
-            #product-carousel img {
-                flex: 0 0 50%; /* Cada imagen ocupa el 50% en móviles */
-            }
-            .mesas-dulces img {
-                flex: 1 1 100%; /* Cada imagen ocupa el ancho completo */
-            }
-            footer {
-                font-size: 14px;
-            }
-        }
-        @media (max-width: 480px) {
-            header p {
-                font-size: 14px; /* Ajusta el texto de contacto */
-            }
-            .about-section h2 {
-                font-size: 24px;
-            }
-            footer {
-                font-size: 12px;
-            }
-        }
-    </style>
-</head>
-  <script>
-document.getElementById("sendOrder").addEventListener("click", function() {
-    let nombre = document.getElementById("nombre").value;
-    let telefono = document.getElementById("telefono").value;
-    let producto = document.getElementById("producto").value;
-    let cantidad = document.getElementById("cantidad").value;
-    let instrucciones = document.getElementById("instrucciones").value;
-    let joinGroup = document.getElementById("joinGroup").checked;
-    let orderCode = Math.random().toString(36).substring(2, 8).toUpperCase();
-    document.getElementById('prizeCode').innerText = orderCode;
-
-    let mensaje = `Nuevo Pedido:%0A- Nombre: ${nombre}%0A- Teléfono: ${telefono}%0A- Producto: ${producto}%0A- Cantidad: ${cantidad}%0A- Instrucciones: ${instrucciones} JoinGroup: ${mensaje}%0A- Código de Pedido: ${orderCode}`;
-
-    if (joinGroup) {
-        mensaje += `%0A- Cliente desea ser añadido al grupo de WhatsApp`;
-    }
-    let numeroWhatsApp = "72459199"; // Reemplaza con tu número en formato internacional sin el "+"
-    let url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensaje}`;
-
-    window.open(url, "_blank");
-});
-</script>
-<body>
-    <header>
-        <p>Contacto: Jacquelin Artavia - Tel/Sinpe: 72459199</p>
-    </header>
-    <!-- Imagen de portada -->
-<div class="image-container">
-    <img src="./portadaJaqueline.jpeg" alt="Portada de la página" style="width: 100%; height: auto; border-radius: 0;">
-</div>
-
-<!-- Sección "Sobre Nosotros" -->
-<div style="margin-top: 30px; padding: 20px; background-color: #ffffff;">
-    <h2 style="font-family: 'Catchy Mager', sans-serif; font-size: 40px; text-align: left; margin-bottom: 20px;">Sobre Nosotros</h2>
-
-    <!-- Contenedor de dos columnas -->
-    <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
-        <!-- Texto de desarrollo (60% del ancho) -->
-        <div style="width: 60%; font-family: 'Glacial Indifference', sans-serif; font-size: 20px; line-height: 1.6; text-align: justify;">
-            <p>
-                Con más de 25 años de experiencia, llevamos el arte de la pastelería gourmet a otro nivel.
-                Todo lo que hacemos está hecho con amor, cuidado y dedicación, utilizando recetas únicas 
-                y 100% caseras creadas por Jacqueline, nuestra talentosa fundadora.
-            </p>
-            <p>
-                Contamos con más de 2.000 pedidos realizados, nos hemos posicionado como referentes en el mercado 
-                de la pastelería artesanal. Nuestros clientes confían en nosotros para preparar sus postres 
-                y mesas dulces en los momentos más especiales. Nos enorgullece trabajar bajo valores como la 
-                puntualidad, el profesionalismo, la transparencia y el cuidado al detalle, asegurando siempre 
-                la máxima calidad en cada creación.
-            </p>
-            <p>
-                ¡Descubre el verdadero sabor artesanal con nosotros y déjate conquistar por la magia de nuestros productos! ✨🍰
-            </p>
-        </div>
-
-        <!-- Imagen a la derecha (40% del ancho) -->
-        <div style="width: 40%; text-align: center;">
-            <img src="ImagenLogros.png" alt="Macarons" style="width: 85%; height: auto; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        </div>
-    </div>
-</div>
-<div style="margin-top: 30px; padding: 20px;">
-    <!-- Título del carrusel -->
-    <h3 style="font-family: 'Glacial Indifference', sans-serif; font-size: 40px; text-align: left; margin-bottom: 20px;">Productos Destacados</h3>
-
-    <!-- Contenedor principal del carrusel -->
-    <div style="overflow: hidden; width: 100%;">
-        <!-- Carrusel de imágenes -->
-        <div id="product-carousel" style="display: flex; transition: transform 0.5s ease-in-out;">
-            <img src="Carrusel1.png" alt="Producto 1" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <img src="Carrusel2.png" alt="Producto 2" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <img src="Carrusel3.png" alt="Producto 3" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <img src="Carrusel4.png" alt="Producto 4" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <img src="Carrusel5.png" alt="Producto 5" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-            <img src="Carrusel6.png" alt="Producto 6" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
-        </div>
-    </div>
-</div>
-<script>
-    const carousel = document.getElementById("product-carousel");
-    let scrollAmount = 0;
-
-    // Duplica las imágenes para que el carrusel sea continuo
-    const children = Array.from(carousel.children);
-    children.forEach(child => {
-        const clone = child.cloneNode(true);
-        carousel.appendChild(clone); // Clona las imágenes al final
-    });
-
-    function scrollCarousel() {
-        const maxScroll = carousel.scrollWidth / 2; // Ajuste por imágenes duplicadas
-        if (scrollAmount >= maxScroll) {
-            scrollAmount = 0; // Reinicia el carrusel al comienzo
-            carousel.style.transition = "none"; // Sin transición para evitar parpadeos
-            carousel.style.transform = "translateX(0)";
-            setTimeout(() => {
-                carousel.style.transition = "transform 0.5s ease-in-out"; // Reactiva la transición
-            });
-        } else {
-            scrollAmount += carousel.clientWidth / (window.innerWidth > 768 ? 4 : 2); // Avanza según el dispositivo
-            carousel.style.transform = `translateX(-${scrollAmount}px)`;
-        }
-    }
-
-    // Desplaza las imágenes automáticamente cada 3 segundos
-    setInterval(scrollCarousel, 3000);
-</script>
-
-       <!-- Sección "Mesas dulces" -->
-<div style="margin-top: 30px; padding: 20px;">
-    <!-- Título -->
-    <h3 style="font-family: 'Glacial Indifference', sans-serif; font-size: 40px; text-align: left; margin-bottom: 20px;">Mesas dulces</h3>
-
-    <!-- Contenedor de imágenes -->
-    <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
-        <!-- Imagen 1 -->
-        <img src="MesaDulce1.png" alt="Mesa Dulce 1" style="width: 50%; height: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-        <!-- Imagen 2 -->
-        <img src="MesaDulce2.png" alt="Mesa Dulce 2" style="width: 50%; height: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-    </div>
-</div>
-
-    <div class="content">
-        <button id="createOrder">Crear Pedido</button>
-        <div id="orderForm" style="display: none;">
-            <form id="orderDetails">
-                <div class="form-group">
-                    <label for="name">Nombre y Apellido</label>
-                    <input type="text" id="name" placeholder="Escriba su nombre y apellido" required>
-                </div>
-                <div class="form-group">
-                    <label for="phone">Teléfono</label>
-                    <input type="text" id="phone" placeholder="Escriba su número de teléfono" required>
-                </div>
-                <div class="form-group">
-                    <label for="product">Seleccione un producto</label>
-                    <select id="product" required>
-                        <option value="">Seleccione una opción</option>
-                        <option value="Reposterias">Reposterías</option>
-                        <option value="Trenzas">Trenzas</option>
-                        <option value="Postres">Postres</option>
-                    </select>
-                </div>
-                <div class="form-group" id="sizeGroup" style="display: none;">
-                    <label for="size">Tamaño</label>
-                    <select id="size">
-                        <option value="">Seleccione un tamaño</option>
-                        <option value="13000">Pequeño</option>
-                        <option value="15000">Mediano</option>
-                        <option value="20000">Grande</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="quantity">Cantidad</label>
-                    <input type="number" id="quantity" min="1" value="1" required>
-                </div>
-                <div class="form-group">
-                    <label for="instructions">Instrucciones del pedido</label>
-                    <textarea id="instructions" placeholder="Detalles del pedido" required></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="date">Fecha requerida</label>
-                    <input type="date" id="date" required>
-                </div>
-                
-<label>
-    <input type="checkbox" id="joinGroup"> Deseo ser añadido al grupo de WhatsApp
-</label>
-                
-                <p><strong>Total: ₡<span id="total">0</span></strong></p>
-                <button type="button" id="cancelOrder">Cancelar</button>
-                <button type="submit" id="sendOrder">Enviar</button>
-            </form>
-        </div>
-    </div>
-    <!--
-    <div class="prizes-section">
-        <h2>Premios</h2>
-        <img src="./premio.jpg" alt="Ganador del premio" style="width:100%; max-width:400px;">
-        <p><strong>Código del Premio:</strong> <span id="prizeCode"></span></p>
-    </div>
-    -->
-    <footer>
-       <div class="visit-section">
-        <h2>Siguenos en nuestras redes sociales</h2>
-         <div class="social-buttons">
-        <a href="https://www.instagram.com/jaquisreposteria/" target="_blank">
-            <img src="Instagram.png.png" alt="Instagram">
-        </a>
-        <a href="#" target="_blank">
-            <img src="Facebook.png.png" alt="Facebook">
-        </a>
-        <a href="#" target="_blank">
-            <img src="TikTok.png.png" alt="TikTok">
-        </a>
-        <a href="#" target="_blank">
-            <img src="Whatsapp.png.png" alt="WhatsApp">
-        </a>
-    </div>
-        <p>© 2025 Jacqueline Pastelería Gourmet</p>
-    </footer>
-    <script>
-        const createOrderButton = document.getElementById('createOrder');
-        const orderForm = document.getElementById('orderForm');
-        const cancelOrderButton = document.getElementById('cancelOrder');
-        const sendOrderButton = document.getElementById('sendOrder');
-        const productSelect = document.getElementById('product');
-        const sizeGroup = document.getElementById('sizeGroup');
-        const sizeSelect = document.getElementById('size');
-        const quantityInput = document.getElementById('quantity');
-        const joinGroup = document.getElementById('joinGroup');  
-        const totalDisplay = document.getElementById('total');
-        const orderDetailsForm = document.getElementById('orderDetails');
-
-        let currentTotal = 0;
-
-        createOrderButton.addEventListener('click', () => {
-            orderForm.style.display = 'block';
-            createOrderButton.style.display = 'none';
-        });
-
-        cancelOrderButton.addEventListener('click', () => {
-            // Restablece el formulario completo
-            orderDetailsForm.reset();
-            orderForm.style.display = 'none';
-            createOrderButton.style.display = 'block';
-            totalDisplay.textContent = '0';
-            sizeGroup.style.display = 'none';
-        });
-
-        productSelect.addEventListener('change', () => {
-            // Mostrar el selector de tamaño solo si el producto es "Postres"
-            if (productSelect.value === 'Postres') {
-                sizeGroup.style.display = 'block';
-            } else {
-                sizeGroup.style.display = 'none';
-            }
-            updateTotal();
-        });
-
-           
-        quantityInput.addEventListener('input', updateTotal);
-        sizeSelect.addEventListener('change', updateTotal);
-
-        function updateTotal() {
-            const product = productSelect.value;
-            const quantity = parseInt(quantityInput.value) || 0;
-            let price = 0;
-
-            // Determina el precio según el producto seleccionado
-            if (product === 'Reposterias') {
-                price = 1000;
-            } else if (product === 'Trenzas') {
-                price = 1000;
-            } else if (product === 'Postres') {
-                price = parseInt(sizeSelect.value) || 0;
-            }
-
-            currentTotal = price * quantity;
-            totalDisplay.textContent = currentTotal.toLocaleString();
-        }
-
-        sendOrderButton.addEventListener('click', (event) => {
-            // Evita el envío si hay campos vacíos
-            if (!orderDetailsForm.checkValidity()) {
-                event.preventDefault();
-                orderDetailsForm.reportValidity();
-                return;
-            }
-
-            const name = document.getElementById('name').value;
-            const phone = document.getElementById('phone').value;
-            const product = productSelect.value;
-            const quantity = quantityInput.value;
-            const instructions = document.getElementById('instructions').value;
-            const date = document.getElementById('date').value;
-            const mensaje = document.getElementById('joinGroup').value;
-            
-            const whatsappMessage = `Pedido para Jacqui Repostería:%0A%0A` +
-                                    `Solicitante: ${name}%0A` +
-                                    `Teléfono: ${phone}%0A` +
-                                    `Producto: ${product}%0A` +
-                                    `Cantidad: ${quantity}%0A` +
-                                    `Instrucciones: ${instructions}%0A` +
-                                    `Fecha requerida: ${date}%0A` +
-                                    `Cliente desea ser añadido al grupo de WhatsApp: ${mensaje}%0A` +
-                                    `Total: ₡${currentTotal.toLocaleString()}`;
-
-           // window.open(`https://wa.me/72459199?text=${whatsappMessage}`, '_blank');
-         
-                 // Definir los dos números de WhatsApp a los que se enviará el mensaje
-            let numerosWhatsApp = ["72459199", "88140898"]; // Agregael segundo número
-
-            // Enviar el pedido a ambos números
-            numerosWhatsApp.forEach(numero => {
-                let url = `https://api.whatsapp.com/send?phone=${numero}&text=${whatsappMessage}`;
-                window.open(url, "_blank");
-            });
-        });
-    </script>
-</body>
-</html>
+  <!DOCTYPE html>
+ <html lang="es">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Jacqui Repostería</title>
+     <style>
+     /* Configuración básica para hacer toda la página responsiva */
+     body {
+         font-family: Arial, sans-serif;
+         margin: 0;
+         padding: 0;
+         background-color: #ffffff;
+         max-width: 1200px; /* Ancho máximo de la página */
+         margin: 0 auto; /* Centra el contenido horizontalmente */
+     }
+ 
+     img {
+         max-width: 100%; /* Asegura que las imágenes no excedan su contenedor */
+         height: auto; /* Mantiene las proporciones */
+     }
+ 
+     header {
+         text-align: center;
+         padding: 15px 10px;
+     }
+ 
+     header h1, header p {
+         margin: 5px;
+     }
+ 
+     .content {
+         padding: 20px;
+     }
+ 
+     .image-container {
+         display: flex;
+         justify-content: center;
+         align-items: center;
+         height: auto;
+         background-color: #ffffff;
+         margin-bottom: 20px;
+     }
+ 
+     .about-section {
+         margin-top: 30px;
+         padding: 20px;
+         background-color: #ffffff;
+     }
+ 
+     .about-section h2 {
+         font-size: 32px; /* Títulos adaptables */
+         text-align: left;
+     }
+ 
+     .about-section div {
+         display: flex;
+         flex-wrap: wrap; /* Se reorganiza en filas si el espacio no es suficiente */
+         gap: 20px;
+     }
+ 
+     .about-section div > div {
+         flex: 1 1 calc(50% - 20px); /* Ajusta la proporción del texto y las imágenes */
+         box-sizing: border-box;
+     }
+ 
+     .about-section img {
+         border-radius: 5px;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+     }
+ 
+     /* Carrusel */
+     #product-carousel {
+         display: flex;
+         overflow: hidden; /* Oculta las imágenes fuera del carrusel */
+     }
+ 
+     #product-carousel img {
+         flex: 0 0 25%; /* Cada imagen ocupa el 25% del contenedor */
+         max-width: 300px;
+         height: auto;
+         border-radius: 10px;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         margin-right: 15px;
+     }
+ 
+     /* Mesas Dulces */
+     .mesas-dulces {
+         display: flex;
+         flex-wrap: wrap;
+         justify-content: space-between;
+         gap: 20px;
+     }
+ 
+     .mesas-dulces img {
+         flex: 1 1 calc(50% - 20px); /* Ocupan la mitad del ancho con espacio entre ellas */
+         border-radius: 10px;
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+     }
+ 
+     footer {
+         text-align: center;
+         padding: 10px 20px;
+         margin-top: 20px;
+     }
+ 
+     .social-buttons img {
+         width: 40px;
+         height: auto;
+         margin: 5px;
+     }
+ 
+     /* Responsividad con media queries */
+     @media (max-width: 768px) {
+         /* Configuración básica para hacer toda la página responsiva */
+         body {
+             font-family: Arial, sans-serif;
+             margin: 0;
+             padding: 0;
+             background-color: #ffffff;
+             max-width: 1200px; /* Ancho máximo de la página */
+             margin: 0 auto; /* Centra el contenido horizontalmente */
+         }
+         img {
+             max-width: 100%; /* Asegura que las imágenes no excedan su contenedor */
+             height: auto; /* Mantiene las proporciones */
+         }
+         header {
+             text-align: center;
+             padding: 15px 10px;
+         }
+         header h1, header p {
+             margin: 5px;
+         }
+         .content {
+             padding: 20px;
+         }
+         .image-container {
+             display: flex;
+             justify-content: center;
+             align-items: center;
+             height: auto;
+             background-color: #ffffff;
+             margin-bottom: 20px;
+         }
+         .about-section {
+             margin-top: 30px;
+             padding: 20px;
+             background-color: #ffffff;
+         }
+         .about-section h2 {
+             font-size: 28px; /* Reduce el tamaño del título en pantallas medianas */
+             font-size: 32px; /* Títulos adaptables */
+             text-align: left;
+         }
+         .about-section div {
+             display: flex;
+             flex-wrap: wrap; /* Se reorganiza en filas si el espacio no es suficiente */
+             gap: 20px;
+         }
+ 
+         .about-section div > div {
+             flex: 1 1 100%; /* Elementos ocupan todo el ancho en pantallas pequeñas */
+             flex: 1 1 calc(50% - 20px); /* Ajusta la proporción del texto y las imágenes */
+             box-sizing: border-box;
+         }
+         .about-section img {
+             border-radius: 5px;
+             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         }
+         /* Carrusel */
+         #product-carousel {
+             display: flex;
+             overflow: hidden; /* Oculta las imágenes fuera del carrusel */
+         }
+ 
+         #product-carousel img {
+             flex: 0 0 50%; /* Muestra 2 imágenes a la vez en pantallas pequeñas */
+             flex: 0 0 25%; /* Cada imagen ocupa el 25% en PC */
+             height: auto;
+             border-radius: 10px;
+             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+             margin-right: 15px;
+         }
+         /* Mesas Dulces */
+         .mesas-dulces {
+             display: flex;
+             flex-wrap: wrap;
+             gap: 20px;
+         }
+ 
+         .mesas-dulces img {
+             flex: 1 1 100%; /* Cada imagen ocupa el ancho completo */
+             flex: 1 1 calc(50% - 20px); /* Cada imagen ocupa el 50% del ancho en PC */
+             border-radius: 10px;
+             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+         }
+ 
+         footer {
+             font-size: 14px;
+             text-align: center;
+             padding: 10px 20px;
+             margin-top: 20px;
+         }
+     }
+ 
+     @media (max-width: 480px) {
+         header p {
+             font-size: 14px; /* Ajusta el texto de contacto */
+         .social-buttons img {
+             width: 40px;
+             height: auto;
+             margin: 5px;
+         }
+ 
+         .about-section h2 {
+             font-size: 24px;
+         /* Responsividad con media queries */
+         @media (max-width: 768px) {
+             .about-section h2 {
+                 font-size: 28px; /* Reduce el tamaño del título en pantallas medianas */
+             }
+             .about-section div > div {
+                 flex: 1 1 100%; /* El texto ocupa todo el ancho en pantallas pequeñas */
+             }
+             .about-section img {
+                 width: 100%; /* La imagen ocupa todo el ancho */
+             }
+             #product-carousel img {
+                 flex: 0 0 50%; /* Cada imagen ocupa el 50% en móviles */
+             }
+             .mesas-dulces img {
+                 flex: 1 1 100%; /* Cada imagen ocupa el ancho completo */
+             }
+             footer {
+                 font-size: 14px;
+             }
+         }
+ 
+         footer {
+             font-size: 12px;
+         @media (max-width: 480px) {
+             header p {
+                 font-size: 14px; /* Ajusta el texto de contacto */
+             }
+             .about-section h2 {
+                 font-size: 24px;
+             }
+             footer {
+                 font-size: 12px;
+             }
+         }
+     }
+ </style>
+ 
+     </style>
+ </head>
+    
+   <script>
+ document.getElementById("sendOrder").addEventListener("click", function() {
+     let nombre = document.getElementById("nombre").value;
+     let telefono = document.getElementById("telefono").value;
+     let producto = document.getElementById("producto").value;
+     let cantidad = document.getElementById("cantidad").value;
+     let instrucciones = document.getElementById("instrucciones").value;
+     let joinGroup = document.getElementById("joinGroup").checked;
+     let orderCode = Math.random().toString(36).substring(2, 8).toUpperCase();
+     document.getElementById('prizeCode').innerText = orderCode;
+ 
+     let mensaje = `Nuevo Pedido:%0A- Nombre: ${nombre}%0A- Teléfono: ${telefono}%0A- Producto: ${producto}%0A- Cantidad: ${cantidad}%0A- Instrucciones: ${instrucciones} JoinGroup: ${mensaje}%0A- Código de Pedido: ${orderCode}`;
+ 
+     if (joinGroup) {
+         mensaje += `%0A- Cliente desea ser añadido al grupo de WhatsApp`;
+     }
+ 
+     let numeroWhatsApp = "72459199"; // Reemplaza con tu número en formato internacional sin el "+"
+     let url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensaje}`;
+ 
+     window.open(url, "_blank");
+ });
+ </script>
+ <body>
+     <header>
+         <p>Contacto: Jacquelin Artavia - Tel/Sinpe: 72459199</p>
+     </header>
+     <!-- Imagen de portada -->
+ <div class="image-container">
+     <img src="./portadaJaqueline.jpeg" alt="Portada de la página" style="width: 100%; height: auto; border-radius: 0;">
+ </div>
+ 
+ <!-- Sección "Sobre Nosotros" -->
+ <div style="margin-top: 30px; padding: 20px; background-color: #ffffff;">
+     <h2 style="font-family: 'Catchy Mager', sans-serif; font-size: 40px; text-align: left; margin-bottom: 20px;">Sobre Nosotros</h2>
+ 
+     <!-- Contenedor de dos columnas -->
+     <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 20px;">
+         <!-- Texto de desarrollo (60% del ancho) -->
+         <div style="width: 60%; font-family: 'Glacial Indifference', sans-serif; font-size: 20px; line-height: 1.6; text-align: justify;">
+             <p>
+                 Con más de 25 años de experiencia, llevamos el arte de la pastelería gourmet a otro nivel.
+                 Todo lo que hacemos está hecho con amor, cuidado y dedicación, utilizando recetas únicas 
+                 y 100% caseras creadas por Jacqueline, nuestra talentosa fundadora.
+             </p>
+             <p>
+                 Contamos con más de 2.000 pedidos realizados, nos hemos posicionado como referentes en el mercado 
+                 de la pastelería artesanal. Nuestros clientes confían en nosotros para preparar sus postres 
+                 y mesas dulces en los momentos más especiales. Nos enorgullece trabajar bajo valores como la 
+                 puntualidad, el profesionalismo, la transparencia y el cuidado al detalle, asegurando siempre 
+                 la máxima calidad en cada creación.
+             </p>
+             <p>
+                 ¡Descubre el verdadero sabor artesanal con nosotros y déjate conquistar por la magia de nuestros productos! ✨🍰
+             </p>
+         </div>
+ 
+         <!-- Imagen a la derecha (40% del ancho) -->
+         <div style="width: 40%; text-align: center;">
+             <img src="ImagenLogros.png" alt="Macarons" style="width: 85%; height: auto; border-radius: 5px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+         </div>
+     </div>
+ </div>
+ <div style="margin-top: 30px; padding: 20px;">
+     <!-- Título del carrusel -->
+     <h3 style="font-family: 'Glacial Indifference', sans-serif; font-size: 40px; text-align: left; margin-bottom: 20px;">Productos Destacados</h3>
+ 
+     <!-- Contenedor principal del carrusel -->
+     <div style="overflow: hidden; width: 100%;">
+         <!-- Carrusel de imágenes -->
+         <div id="product-carousel" style="display: flex; transition: transform 0.5s ease-in-out;">
+             <img src="Carrusel1.png" alt="Producto 1" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+             <img src="Carrusel2.png" alt="Producto 2" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+             <img src="Carrusel3.png" alt="Producto 3" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+             <img src="Carrusel4.png" alt="Producto 4" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+             <img src="Carrusel5.png" alt="Producto 5" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+             <img src="Carrusel6.png" alt="Producto 6" style="width: 25%; max-width: 300px; height: auto; margin-right: 15px; border-radius: 10px; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+         </div>
+     </div>
+ </div>
+ <script>
+     const carousel = document.getElementById("product-carousel");
+     let scrollAmount = 0;
+ 
+     // Duplica las imágenes para que el carrusel sea continuo
+     const children = Array.from(carousel.children);
+     children.forEach(child => {
+         const clone = child.cloneNode(true);
+         carousel.appendChild(clone); // Clona las imágenes al final
+     });
+ 
+     function scrollCarousel() {
+         const maxScroll = carousel.scrollWidth / 2; // Ajuste por imágenes duplicadas
+         if (scrollAmount >= maxScroll) {
+             scrollAmount = 0; // Reinicia el carrusel al comienzo
+             carousel.style.transition = "none"; // Sin transición para evitar parpadeos
+             carousel.style.transform = "translateX(0)";
+             setTimeout(() => {
+                 carousel.style.transition = "transform 0.5s ease-in-out"; // Reactiva la transición
+             });
+         } else {
+             scrollAmount += carousel.clientWidth / 4; // Avanza 1 imagen visible
+             scrollAmount += carousel.clientWidth / (window.innerWidth > 768 ? 4 : 2); // Avanza según el dispositivo
+             carousel.style.transform = `translateX(-${scrollAmount}px)`;
+         }
+     }
+ 
+     // Desplaza las imágenes automáticamente cada 2 segundos
+     // Desplaza las imágenes automáticamente cada 3 segundos
+     setInterval(scrollCarousel, 3000);
+ </script>
+        <!-- Sección "Mesas dulces" -->
+ <div style="margin-top: 30px; padding: 20px;">
+     <!-- Título -->
+     <h3 style="font-family: 'Glacial Indifference', sans-serif; font-size: 40px; text-align: left; margin-bottom: 20px;">Mesas dulces</h3>
+ 
+     <!-- Contenedor de imágenes -->
+     <div style="display: flex; justify-content: space-between; align-items: center; gap: 20px;">
+         <!-- Imagen 1 -->
+         <img src="MesaDulce1.png" alt="Mesa Dulce 1" style="width: 50%; height: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+         <!-- Imagen 2 -->
+         <img src="MesaDulce2.png" alt="Mesa Dulce 2" style="width: 50%; height: auto; border-radius: 10px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+     </div>
+ </div>
+ 
+     <div class="content">
+         <button id="createOrder">Crear Pedido</button>
+         <div id="orderForm" style="display: none;">
+             <form id="orderDetails">
+                 <div class="form-group">
+                     <label for="name">Nombre y Apellido</label>
+                     <input type="text" id="name" placeholder="Escriba su nombre y apellido" required>
+                 </div>
+                 <div class="form-group">
+                     <label for="phone">Teléfono</label>
+                     <input type="text" id="phone" placeholder="Escriba su número de teléfono" required>
+                 </div>
+                 <div class="form-group">
+                     <label for="product">Seleccione un producto</label>
+                     <select id="product" required>
+                         <option value="">Seleccione una opción</option>
+                         <option value="Reposterias">Reposterías</option>
+                         <option value="Trenzas">Trenzas</option>
+                         <option value="Postres">Postres</option>
+                     </select>
+                 </div>
+                 <div class="form-group" id="sizeGroup" style="display: none;">
+                     <label for="size">Tamaño</label>
+                     <select id="size">
+                         <option value="">Seleccione un tamaño</option>
+                         <option value="13000">Pequeño</option>
+                         <option value="15000">Mediano</option>
+                         <option value="20000">Grande</option>
+                     </select>
+                 </div>
+                 <div class="form-group">
+                     <label for="quantity">Cantidad</label>
+                     <input type="number" id="quantity" min="1" value="1" required>
+                 </div>
+                 <div class="form-group">
+                     <label for="instructions">Instrucciones del pedido</label>
+                     <textarea id="instructions" placeholder="Detalles del pedido" required></textarea>
+                 </div>
+                 <div class="form-group">
+                     <label for="date">Fecha requerida</label>
+                     <input type="date" id="date" required>
+                 </div>
+ 
+ <label>
+     <input type="checkbox" id="joinGroup"> Deseo ser añadido al grupo de WhatsApp
+ </label>
+ 
+                 <p><strong>Total: ₡<span id="total">0</span></strong></p>
+                 <button type="button" id="cancelOrder">Cancelar</button>
+                 <button type="submit" id="sendOrder">Enviar</button>
+             </form>
+         </div>
+     </div>
+     <!--
+     <div class="prizes-section">
+         <h2>Premios</h2>
+         <img src="./premio.jpg" alt="Ganador del premio" style="width:100%; max-width:400px;">
+         <p><strong>Código del Premio:</strong> <span id="prizeCode"></span></p>
+     </div>
+     -->
+     <footer>
+        <div class="visit-section">
+         <h2>Siguenos en nuestras redes sociales</h2>
+          <div class="social-buttons">
+         <a href="https://www.instagram.com/jaquisreposteria/" target="_blank">
+             <img src="Instagram.png.png" alt="Instagram">
+         </a>
+         <a href="#" target="_blank">
+             <img src="Facebook.png.png" alt="Facebook">
+         </a>
+         <a href="#" target="_blank">
+             <img src="TikTok.png.png" alt="TikTok">
+         </a>
+         <a href="#" target="_blank">
+             <img src="Whatsapp.png.png" alt="WhatsApp">
+         </a>
+     </div>
+         <p>© 2025 Jacqueline Pastelería Gourmet</p>
+     </footer>
+     <script>
+         const createOrderButton = document.getElementById('createOrder');
+         const orderForm = document.getElementById('orderForm');
+         const cancelOrderButton = document.getElementById('cancelOrder');
+         const sendOrderButton = document.getElementById('sendOrder');
+         const productSelect = document.getElementById('product');
+         const sizeGroup = document.getElementById('sizeGroup');
+         const sizeSelect = document.getElementById('size');
+         const quantityInput = document.getElementById('quantity');
+         const joinGroup = document.getElementById('joinGroup');  
+         const totalDisplay = document.getElementById('total');
+         const orderDetailsForm = document.getElementById('orderDetails');
+ 
+         let currentTotal = 0;
+ 
+         createOrderButton.addEventListener('click', () => {
+             orderForm.style.display = 'block';
+             createOrderButton.style.display = 'none';
+         });
+ 
+         cancelOrderButton.addEventListener('click', () => {
+             // Restablece el formulario completo
+             orderDetailsForm.reset();
+             orderForm.style.display = 'none';
+             createOrderButton.style.display = 'block';
+             totalDisplay.textContent = '0';
+             sizeGroup.style.display = 'none';
+         });
+ 
+         productSelect.addEventListener('change', () => {
+             // Mostrar el selector de tamaño solo si el producto es "Postres"
+             if (productSelect.value === 'Postres') {
+                 sizeGroup.style.display = 'block';
+             } else {
+                 sizeGroup.style.display = 'none';
+             }
+             updateTotal();
+         });
+ 
+ 
+         quantityInput.addEventListener('input', updateTotal);
+         sizeSelect.addEventListener('change', updateTotal);
+ 
+         function updateTotal() {
+             const product = productSelect.value;
+             const quantity = parseInt(quantityInput.value) || 0;
+             let price = 0;
+ 
+             // Determina el precio según el producto seleccionado
+             if (product === 'Reposterias') {
+                 price = 1000;
+             } else if (product === 'Trenzas') {
+                 price = 1000;
+             } else if (product === 'Postres') {
+                 price = parseInt(sizeSelect.value) || 0;
+             }
+ 
+             currentTotal = price * quantity;
+             totalDisplay.textContent = currentTotal.toLocaleString();
+         }
+ 
+         sendOrderButton.addEventListener('click', (event) => {
+             // Evita el envío si hay campos vacíos
+             if (!orderDetailsForm.checkValidity()) {
+                 event.preventDefault();
+                 orderDetailsForm.reportValidity();
+                 return;
+             }
+ 
+             const name = document.getElementById('name').value;
+             const phone = document.getElementById('phone').value;
+             const product = productSelect.value;
+             const quantity = quantityInput.value;
+             const instructions = document.getElementById('instructions').value;
+             const date = document.getElementById('date').value;
+             const mensaje = document.getElementById('joinGroup').value;
+ 
+             const whatsappMessage = `Pedido para Jacqui Repostería:%0A%0A` +
+                                     `Solicitante: ${name}%0A` +
+                                     `Teléfono: ${phone}%0A` +
+                                     `Producto: ${product}%0A` +
+                                     `Cantidad: ${quantity}%0A` +
+                                     `Instrucciones: ${instructions}%0A` +
+                                     `Fecha requerida: ${date}%0A` +
+                                     `Cliente desea ser añadido al grupo de WhatsApp: ${mensaje}%0A` +
+                                     `Total: ₡${currentTotal.toLocaleString()}`;
+ 
+            // window.open(`https://wa.me/72459199?text=${whatsappMessage}`, '_blank');
+ 
+                  // Definir los dos números de WhatsApp a los que se enviará el mensaje
+             let numerosWhatsApp = ["72459199", "88140898"]; // Agregael segundo número
+ 
+             // Enviar el pedido a ambos números
+             numerosWhatsApp.forEach(numero => {
+                 let url = `https://api.whatsapp.com/send?phone=${numero}&text=${whatsappMessage}`;
+                 window.open(url, "_blank");
+             });
+         });
+     </script>
+ </body>
+ </html>
