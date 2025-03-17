@@ -1,155 +1,127 @@
        <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jacqui Repostería</title>
     <style>
-    /* Configuración básica para hacer toda la página responsiva */
-    body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        background-color: #ffffff;
-        max-width: 1200px; /* Ancho máximo de la página */
-        margin: 0 auto; /* Centra el contenido horizontalmente */
-    }
-
-    img {
-        max-width: 100%; /* Asegura que las imágenes no excedan su contenedor */
-        height: auto; /* Mantiene las proporciones */
-    }
-
-    header {
-        text-align: center;
-        padding: 15px 10px;
-    }
-
-    header h1, header p {
-        margin: 5px;
-    }
-
-    .content {
-        padding: 20px;
-    }
-
-    .image-container {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: auto;
-        background-color: #ffffff;
-        margin-bottom: 20px;
-    }
-
-    .about-section {
-        margin-top: 30px;
-        padding: 20px;
-        background-color: #ffffff;
-    }
-
-    .about-section h2 {
-        font-size: 32px; /* Títulos adaptables */
-        text-align: left;
-    }
-
-    .about-section div {
-        display: flex;
-        flex-wrap: wrap; /* Se reorganiza en filas si el espacio no es suficiente */
-        gap: 20px;
-    }
-
-    .about-section div > div {
-        flex: 1 1 calc(50% - 20px); /* Ajusta la proporción del texto y las imágenes */
-        box-sizing: border-box;
-    }
-
-    .about-section img {
-        border-radius: 5px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    /* Carrusel */
-    #product-carousel {
-        display: flex;
-        overflow: hidden; /* Oculta las imágenes fuera del carrusel */
-    }
-
-    #product-carousel img {
-        flex: 0 0 25%; /* Cada imagen ocupa el 25% del contenedor */
-        max-width: 300px;
-        height: auto;
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        margin-right: 15px;
-    }
-
-    /* Mesas Dulces */
-    .mesas-dulces {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: space-between;
-        gap: 20px;
-    }
-
-    .mesas-dulces img {
-        flex: 1 1 calc(50% - 20px); /* Ocupan la mitad del ancho con espacio entre ellas */
-        border-radius: 10px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    footer {
-        text-align: center;
-        padding: 10px 20px;
-        margin-top: 20px;
-    }
-
-    .social-buttons img {
-        width: 40px;
-        height: auto;
-        margin: 5px;
-    }
-
-    /* Responsividad con media queries */
-    @media (max-width: 768px) {
-        .about-section h2 {
-            font-size: 28px; /* Reduce el tamaño del título en pantallas medianas */
+        /* Configuración básica para hacer toda la página responsiva */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            max-width: 1200px; /* Ancho máximo de la página */
+            margin: 0 auto; /* Centra el contenido horizontalmente */
         }
-
+        img {
+            max-width: 100%; /* Asegura que las imágenes no excedan su contenedor */
+            height: auto; /* Mantiene las proporciones */
+        }
+        header {
+            text-align: center;
+            padding: 15px 10px;
+        }
+        header h1, header p {
+            margin: 5px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .image-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: auto;
+            background-color: #ffffff;
+            margin-bottom: 20px;
+        }
+        .about-section {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #ffffff;
+        }
+        .about-section h2 {
+            font-size: 32px; /* Títulos adaptables */
+            text-align: left;
+        }
+        .about-section div {
+            display: flex;
+            flex-wrap: wrap; /* Se reorganiza en filas si el espacio no es suficiente */
+            gap: 20px;
+        }
         .about-section div > div {
-            flex: 1 1 100%; /* Elementos ocupan todo el ancho en pantallas pequeñas */
+            flex: 1 1 calc(50% - 20px); /* Ajusta la proporción del texto y las imágenes */
+            box-sizing: border-box;
         }
-
+        .about-section img {
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        /* Carrusel */
+        #product-carousel {
+            display: flex;
+            overflow: hidden; /* Oculta las imágenes fuera del carrusel */
+        }
         #product-carousel img {
-            flex: 0 0 50%; /* Muestra 2 imágenes a la vez en pantallas pequeñas */
+            flex: 0 0 25%; /* Cada imagen ocupa el 25% en PC */
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-right: 15px;
         }
-
+        /* Mesas Dulces */
+        .mesas-dulces {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
         .mesas-dulces img {
-            flex: 1 1 100%; /* Cada imagen ocupa el ancho completo */
+            flex: 1 1 calc(50% - 20px); /* Cada imagen ocupa el 50% del ancho en PC */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-
         footer {
-            font-size: 14px;
+            text-align: center;
+            padding: 10px 20px;
+            margin-top: 20px;
         }
-    }
-
-    @media (max-width: 480px) {
-        header p {
-            font-size: 14px; /* Ajusta el texto de contacto */
+        .social-buttons img {
+            width: 40px;
+            height: auto;
+            margin: 5px;
         }
-
-        .about-section h2 {
-            font-size: 24px;
+        /* Responsividad con media queries */
+        @media (max-width: 768px) {
+            .about-section h2 {
+                font-size: 28px; /* Reduce el tamaño del título en pantallas medianas */
+            }
+            .about-section div > div {
+                flex: 1 1 100%; /* El texto ocupa todo el ancho en pantallas pequeñas */
+            }
+            .about-section img {
+                width: 100%; /* La imagen ocupa todo el ancho */
+            }
+            #product-carousel img {
+                flex: 0 0 50%; /* Cada imagen ocupa el 50% en móviles */
+            }
+            .mesas-dulces img {
+                flex: 1 1 100%; /* Cada imagen ocupa el ancho completo */
+            }
+            footer {
+                font-size: 14px;
+            }
         }
-
-        footer {
-            font-size: 12px;
+        @media (max-width: 480px) {
+            header p {
+                font-size: 14px; /* Ajusta el texto de contacto */
+            }
+            .about-section h2 {
+                font-size: 24px;
+            }
+            footer {
+                font-size: 12px;
+            }
         }
-    }
-</style>
-
+    </style>
 </head>
-   
   <script>
 document.getElementById("sendOrder").addEventListener("click", function() {
     let nombre = document.getElementById("nombre").value;
@@ -166,7 +138,6 @@ document.getElementById("sendOrder").addEventListener("click", function() {
     if (joinGroup) {
         mensaje += `%0A- Cliente desea ser añadido al grupo de WhatsApp`;
     }
-
     let numeroWhatsApp = "72459199"; // Reemplaza con tu número en formato internacional sin el "+"
     let url = `https://api.whatsapp.com/send?phone=${numeroWhatsApp}&text=${mensaje}`;
 
@@ -233,14 +204,12 @@ document.getElementById("sendOrder").addEventListener("click", function() {
 <script>
     const carousel = document.getElementById("product-carousel");
     let scrollAmount = 0;
-
     // Duplica las imágenes para que el carrusel sea continuo
     const children = Array.from(carousel.children);
     children.forEach(child => {
         const clone = child.cloneNode(true);
         carousel.appendChild(clone); // Clona las imágenes al final
     });
-
     function scrollCarousel() {
         const maxScroll = carousel.scrollWidth / 2; // Ajuste por imágenes duplicadas
         if (scrollAmount >= maxScroll) {
@@ -251,12 +220,11 @@ document.getElementById("sendOrder").addEventListener("click", function() {
                 carousel.style.transition = "transform 0.5s ease-in-out"; // Reactiva la transición
             });
         } else {
-            scrollAmount += carousel.clientWidth / 4; // Avanza 1 imagen visible
+            scrollAmount += carousel.clientWidth / (window.innerWidth > 768 ? 4 : 2); // Avanza según el dispositivo
             carousel.style.transform = `translateX(-${scrollAmount}px)`;
         }
     }
-
-    // Desplaza las imágenes automáticamente cada 2 segundos
+    // Desplaza las imágenes automáticamente cada 3 segundos
     setInterval(scrollCarousel, 3000);
 </script>
        <!-- Sección "Mesas dulces" -->
