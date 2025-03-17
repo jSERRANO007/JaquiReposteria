@@ -113,23 +113,6 @@ document.getElementById("sendOrder").addEventListener("click", function() {
     window.open(url, "_blank");
 });
 </script>
-       <script>
-    const carousel = document.getElementById("product-carousel");
-    let scrollAmount = 0;
-
-    function scrollCarousel() {
-        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
-        if (scrollAmount >= maxScroll) {
-            scrollAmount = 0; // Reinicia el desplazamiento al inicio
-        } else {
-            scrollAmount += carousel.clientWidth / 4; // Avanza 1 imagen (ajustado para 4 visibles)
-        }
-        carousel.style.transform = `translateX(-${scrollAmount}px)`;
-    }
-
-    // Desplaza las imágenes automáticamente cada 3 segundos
-    setInterval(scrollCarousel, 3000);
-</script>    
 <body>
     <header>
         <p>Contacto: Jacquelin Artavia - Tel/Sinpe: 72459199</p>
@@ -187,6 +170,23 @@ document.getElementById("sendOrder").addEventListener("click", function() {
         </div>
     </div>
 </div>
+       <script>
+    const carousel = document.getElementById("product-carousel");
+    let scrollAmount = 0;
+
+    function scrollCarousel() {
+        const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+        if (scrollAmount >= maxScroll) {
+            scrollAmount = 0; // Reinicia el desplazamiento al inicio
+        } else {
+            scrollAmount += carousel.clientWidth / 4; // Avanza 1 imagen (ajustado para 4 visibles)
+        }
+        carousel.style.transform = `translateX(-${scrollAmount}px)`;
+    }
+
+    // Desplaza las imágenes automáticamente cada 3 segundos
+    setInterval(scrollCarousel, 3000);
+</script>    
     <div class="content">
         <button id="createOrder">Crear Pedido</button>
         <div id="orderForm" style="display: none;">
